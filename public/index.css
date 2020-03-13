@@ -1,0 +1,79 @@
+body {
+  background-image: url("https://i.pinimg.com/474x/1c/21/26/1c21267587e7e43113924bf391d36343.jpg");
+  background-size: cover;
+  margin: auto;
+}
+
+.nav-wrapper {
+  padding: 0 2rem;
+  background: rgba(73, 155, 234, 1);
+  background: -moz-linear-gradient(
+    top,
+    rgba(73, 155, 234, 1) 0%,
+    rgba(75, 0, 130, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(73, 155, 234, 1)),
+    color-stop(100%, rgba(75, 0, 130, 1))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(73, 155, 234, 1) 0%,
+    rgba(75, 0, 130, 1) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(73, 155, 234, 1) 0%,
+    rgba(75, 0, 130, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(73, 155, 234, 1) 0%,
+    rgba(75, 0, 130, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(73, 155, 234, 1) 0%,
+    rgba(75, 0, 130, 1) 100%
+  );
+}
+
+.price {
+  font-size: 2rem;
+}
+
+.row {
+  float: left;
+  width: auto;
+}
+
+.product {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product h1 {
+  margin-bottom: 2rem;
+}
+
+.card-image {
+  height: 300px;
+}
+
+.product img {
+  max-width: 500px;
+}
+
+.product .price.big {
+  font-size: 2,5rem;
+}
+
+.card-action.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

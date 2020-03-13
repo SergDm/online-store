@@ -1,0 +1,32 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo left">Product App</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+      {{#if isHome}}
+        <li class='active'><a href="/">HOME</a></li>
+      {{else}}
+        <li><a href="/">HOME</a></li>
+      {{/if}}
+
+      {{#if isProducts}}
+        <li class='active'><a href="/products">Products</a></li>
+      {{else}}
+        <li><a href="/products">Products</a></li>
+      {{/if}}
+
+      {{#if isAdmin}}
+        <li class='active'><a href="/admin">Admin</a></li>
+      {{else}}
+        <li><a href="/admin">Admin</a></li>
+      {{/if}}
+
+      {{#if isCard}}
+        <li class='active'><a href="/card">Card</a></li>
+      {{else}}
+        <li><a href="/card">Card</a></li>
+      {{/if}}
+
+    </ul>
+  </div>
+</nav>
