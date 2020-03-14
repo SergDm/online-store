@@ -1,87 +1,20 @@
-const uuid = require('uuid/v4')
-const fs = require('fs')
-const path = require('path')
+const { Schema, model } = require('mongoose')
 
-class Product {
-  constructor(group,title, price, img) {
-    this.title = title
-    this.price = price
-    this.img = img
-    this.group = group
-    this.id = uuid()
-  }
+const product = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  group: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  img: String,
+  count: Number
+})
 
-  toJSON() {
-    return {
-      title: this.title,
-      price: this.price,
-      img: this.img,
-      group: this.group,
-      id: this.id
-    }
-  }
-
-  static async update(product) {
-    const products = await Product.getAll()
-
-    const idx = products.findIndex(prod => prod.id === product.id)
-    products[idx] = product
-
-    return new Promise((resolve, reject) => {
-      fs.writeFile(
-        path.join(__dirname, '..', 'data', 'products.json'),
-        JSON.stringify(products),
-        (err) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve()
-          }
-        }
-      )
-    })
-  }
-
-  async save() {
-    const products = await Product.getAll()
-    products.push(this.toJSON())
-
-
-    return new Promise((resolve, reject) => {
-      fs.writeFile(
-        path.join(__dirname, '..', 'data', 'products.json'),
-        JSON.stringify(products),
-        (err) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve()
-          }
-        }
-      )
-    })
-  }
-
-  static getAll() {
-    return new Promise((resolve, reject) => {
-      fs.readFile(
-        path.join(__dirname, '..', 'data', 'products.json'),
-        'utf-8',
-        (err, content) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve(JSON.parse(content))
-          }
-        }
-      )
-    })
-  }
-
-  static async getById(id) {
-    const products = await Product.getAll()
-    return products.find(cour => cour.id === id)
-  }
-}
-
-module.exports = Product
+module.exports = model('Product', product)
