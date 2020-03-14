@@ -14,7 +14,18 @@ const product = new Schema({
     required: true
   },
   img: String,
-  count: Number
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
+})
+
+product.method('toClient', function() {
+  const product = this.toObject()
+  product.id = product._id
+  delete product._id
+  return product
 })
 
 module.exports = model('Product', product)
