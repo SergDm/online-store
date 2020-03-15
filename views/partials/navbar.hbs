@@ -15,28 +15,33 @@
         <li><a href="/products">Products</a></li>
       {{/if}}
 
-      {{#if isAdmin}}
-        <li class='active'><a href="/admin">Admin</a></li>
-      {{else}}
-        <li><a href="/admin">Admin</a></li>
-      {{/if}}
+      {{#if isAuth}}
+        {{#if isAdmin}}
+          <li class='active'><a href="/admin">Admin</a></li>
+        {{else}}
+          <li><a href="/admin">Admin</a></li>
+        {{/if}}
 
-      {{#if isCard}}
-        <li class='active'><a href="/card">Cart</a></li>
-      {{else}}
-        <li><a href="/card">Cart</a></li>
-      {{/if}}
+        {{#if isCard}}
+          <li class='active'><a href="/card">Cart</a></li>
+        {{else}}
+          <li><a href="/card">Cart</a></li>
+        {{/if}}
 
-      {{#if isOrder}}
-      <li class='active'><a href="/orders">Orders</a></li>
-      {{else}}
-      <li><a href="/orders">Orders</a></li>
-      {{/if}}
+        {{#if isOrder}}
+          <li class='active'><a href="/orders">Orders</a></li>
+        {{else}}
+          <li><a href="/orders">Orders</a></li>
+        {{/if}}
 
-      {{#if isLogin}}
-      <li class='active'><a href="/auth/login#login">Sign in</a></li>
+          <li><a href="/auth/logout">Logout</a></li>
+          
       {{else}}
-      <li><a href="/auth/login#login">Sign in</a></li>
+        {{#if isLogin}}
+          <li class='active'><a href="/auth/login#login">Sign in</a></li>
+        {{else}}
+          <li><a href="/auth/login#login">Sign in</a></li>
+        {{/if}}
       {{/if}}
 
     </ul>
