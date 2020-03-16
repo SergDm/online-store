@@ -95,3 +95,15 @@ body {
   background: rgba(255, 0, 0, .3);
   color: red
 }
+
+.btn-large {
+  float: right;
+}
+
+.productAdmin {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 2px solid rgb(43,187,173);
+  border-radius: 10px;
+  font-size: 25px;
+}

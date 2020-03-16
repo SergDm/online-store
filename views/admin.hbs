@@ -1,5 +1,5 @@
 <h1>Add new products</h1>
-
+<div class='productAdmin'>
 <form action='/admin' method='POST'>
   <div class="input-field">
     <input id="title" name='title' type="text" class="validate" required>
@@ -30,3 +30,37 @@
   <button class='btn btn-primary'>Add products</button>
 
 </form>
+</div>
+<h1>Edit product</h1>
+
+<div class='productAdmin' id='product'>
+  {{#if products.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Group</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {{#each products}}
+      <tr>
+        <td>{{title}}</td>
+        <td>{{group}}</td>
+        <td>{{price}}</td>
+        <td>
+          <a class=" btn waves-effect waves-light " href="/products/{{id}}/edit?allow=true">
+            <i class="material-icons right">
+              create
+            </i>
+            EDIT
+          </a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{/if}}

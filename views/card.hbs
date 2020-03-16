@@ -6,6 +6,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Group</th>
         <th>Count</th>
         <th>Action</th>
       </tr>
@@ -15,6 +16,7 @@
       {{#each products}}
       <tr>
         <td>{{title}}</td>
+        <td>{{group}}</td>
         <td>{{count}}</td>
         <td>
           <button class='btn btn-small js-remove' data-id={{id}} data-csrf="{{@root.csrf}}">Delete</button>

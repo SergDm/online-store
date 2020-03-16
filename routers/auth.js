@@ -69,7 +69,7 @@ router.post('/register', async (req, res) => {
     } else {
       const hashPassword = await bcrypt.hash(password, 10)
       const user = new User({
-        email, name, password: hashPassword, cart: { items: [] }
+        email, name, admin: false, password: hashPassword, cart: { items: [] }
       })
       await user.save()
       res.redirect('/auth/login#login')

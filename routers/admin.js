@@ -1,16 +1,24 @@
 const { Router } = require('express')
 const Product = require('../models/product')
-const auth = require('../middleware/auth')
+const admin = require('../middleware/admin')
 const router = Router()
 
-router.get('/', auth, (req, res) => {
-  res.render('admin', {
-    title: 'Admin',
-    isAdmin: true
-  })
+router.get('/', admin, async (req, res) => {
+  try {
+    const products = await Product.find()
+      .populate('userId', 'email name')
+      .select('price title group')
+    res.render('admin', {
+      title: 'Admin',
+      isAdmin: true,
+      products
+    })
+  } catch (e) {
+    console.log(e)
+  }
 })
 
-router.post('/', auth, async (req, res) => {
+router.post('/', admin, async (req, res) => {
   const product = new Product({
     group: req.body.group,
     title: req.body.title,
@@ -18,7 +26,7 @@ router.post('/', auth, async (req, res) => {
     img: req.body.img,
     userId: req.user
   })
-  
+
   try {
     await product.save()
     res.redirect('/products')
