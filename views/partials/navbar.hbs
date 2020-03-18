@@ -1,6 +1,7 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo left">Product App</a>
+    <a href="/" class="brand-logo">SunnyKharkov</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
 
       {{#if isHome}}
@@ -15,11 +16,18 @@
         <li><a href="/products">Products</a></li>
       {{/if}}
 
+      {{#if isArticles}}
+        <li class='active'><a href="/articles">Articles</a></li>
+      {{else}}
+        <li><a href="/articles">Articles</a></li>
+      {{/if}}
+
+
       {{#if isAuth}}
         {{#if isCard}}
-          <li class='active'><a href="/card">Cart</a></li>
+          <li class='active'><a href="/card"><i class="material-icons">shopping_cart</i></a></li>
         {{else}}
-          <li><a href="/card">Cart</a></li>
+          <li><a href="/card"><i class="material-icons">shopping_cart</i></a></li>
         {{/if}}
 
         {{#if isOrder}}
@@ -41,3 +49,14 @@
     </ul>
   </div>
 </nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="/">Home</a></li>
+    <li><a href="/courses">Courses</a></li>
+    <li><a href="/articles">Articles</a></li>
+    {{#if isAuth}}
+    <li><a href="/card">Cart</a></li>
+    <li><a href="/orders">Orders</a></li>
+    {{/if}}
+    <li><a href="/auth/logout">Logout</a></li>
+  </ul>

@@ -1,66 +1,169 @@
-<h1>Add new products</h1>
-<div class='productAdmin'>
-<form action='/admin' method='POST'>
-  <div class="input-field">
-    <input id="title" name='title' type="text" class="validate" required>
-    <label for="title">Title product</label>
-    <span class="helper-text" data-error="enter title"></span>
-  </div>
-
-  <div class="input-field">
-    <input id="group" name='group' type="text" class="validate" required>
-    <label for="group">Group product</label>
-    <span class="helper-text" data-error="enter group"></span>
-  </div>
-
-  <div class="input-field">
-    <input id="price" name='price' type="number" class="validate" required min=1 >
-    <label for="price">Price product</label>
-    <span class="helper-text" data-error="enter price"></span>
-  </div>
-
-  <div class="input-field">
-    <input id="img" name='img' type="text" class="validate" required>
-    <label for="img">URL image</label>
-    <span class="helper-text" data-error="enter url image"></span>
-  </div>
-
-  <input type="hidden" name="_csrf" value="{{csrf}}">
-
-  <button class='btn btn-primary'>Add products</button>
-
-</form>
-</div>
-<h1>Edit product</h1>
-
-<div class='productAdmin' id='product'>
-  {{#if products.length}}
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Group</th>
-        <th>Price</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      {{#each products}}
-      <tr>
-        <td>{{title}}</td>
-        <td>{{group}}</td>
-        <td>{{price}}</td>
-        <td>
-          <a class=" btn waves-effect waves-light " href="/products/{{id}}/edit?allow=true">
-            <i class="material-icons right">
-              create
-            </i>
-            EDIT
+<div class='auth'>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3">
+          <a class="active" href="#addProduct"><i class="material-icons">add_circle</i>
+            Add new product
           </a>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  {{/if}}
+        </li>
+        <li class="tab col s3">
+          <a class="active" href="#edit"><i class="material-icons">border_color</i>
+            Edit product
+          </a>
+        </li>
+        <li class="tab col s3">
+          <a class="active" href="#addArticle"><i class="material-icons">add_circle</i>
+            Add new article
+          </a>
+        </li>
+        <li class="tab col s3">
+          <a class="active" href="#editArticles"><i class="material-icons">add_circle</i>
+            Edit article
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div id="addProduct" class="col s12">
+      <h1>Add new products</h1>
+      <div class='productAdmin'>
+        <form action='/admin/product' method='POST'>
+          <div class="input-field">
+            <input id="title" name='title' type="text" class="validate" required>
+            <label for="title">Title product</label>
+            <span class="helper-text" data-error="enter title"></span>
+          </div>
+
+          <div class="input-field">
+            <input id="group" name='group' type="text" class="validate" required>
+            <label for="group">Group product</label>
+            <span class="helper-text" data-error="enter group"></span>
+          </div>
+
+          <div class="input-field">
+            <input id="price" name='price' type="number" class="validate" required min=1>
+            <label for="price">Price product</label>
+            <span class="helper-text" data-error="enter price"></span>
+          </div>
+
+          <div class="input-field">
+            <input id="img" name='img' type="text" class="validate" required>
+            <label for="img">URL image</label>
+            <span class="helper-text" data-error="enter url image"></span>
+          </div>
+
+          <input type="hidden" name="_csrf" value="{{csrf}}">
+
+          <button class='btn btn-primary'>Add products</button>
+
+        </form>
+      </div>
+    </div>
+    <div id='edit' class="col s12">
+      <h1>Edit product</h1>
+      <div class='tableAdmin' id='product'>
+        {{#if products.length}}
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Group</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each products}}
+            <tr>
+              <td>{{title}}</td>
+              <td>{{group}}</td>
+              <td>{{price}}</td>
+              <td>
+                <a class=" btn waves-effect waves-light " href="/products/{{id}}/edit?allow=true">
+                  <i class="material-icons right">
+                    create
+                  </i>
+                  EDIT
+                </a>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{/if}}
+        </div>
+    </div>
+    <form action='/admin/article' method='POST'>
+      <div id="addArticle" class="col s12">
+        <h1>Add new article</h1>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+
+              <div class="input-field">
+                <input id="author" name='author' type="text" class="validate" required>
+                <label for="author">Author</label>
+                <span class="helper-text" data-error="enter name author"></span>
+              </div>
+
+              <div class="input-field">
+                <input id="title" name='title' type="text" class="validate" required>
+                <label for="title">Title article</label>
+                <span class="helper-text" data-error="enter title"></span>
+              </div>
+
+              <div class="input-field">
+                <input id="img" name='img' type="text" class="validate" required>
+                <label for="img">URL image</label>
+                <span class="helper-text" data-error="enter url image"></span>
+              </div>
+
+              <div class="input-field">
+                <textarea id="text" name="text" type="text" class="materialize-textarea" required></textarea>
+                <label for="text">Text article</label>
+                <span class="helper-text" data-error="enter text"></span>
+              </div>
+
+              <input type="hidden" name="_csrf" value="{{csrf}}">
+
+              <button class='btn btn-primary'>Add article</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </form>
+    <div id='editArticles' class="col s12">
+      <h1>Edit article</h1>
+      <div class='tableAdmin' id='editArticles'>
+        {{#if articles.length}}
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each articles}}
+            <tr>
+              <td>{{title}}</td>
+              <td class="date">{{date}}</td>
+              <td>
+                <a class=" btn waves-effect waves-light " href="/articles/{{id}}/edit?allow=true">
+                  <i class="material-icons right">
+                    create
+                  </i>
+                  EDIT
+                </a>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -44,11 +44,6 @@ body {
   font-size: 2rem;
 }
 
-.row {
-  float: left;
-  width: auto;
-}
-
 .product {
   width: 100%;
   display: flex;
@@ -61,8 +56,12 @@ body {
 }
 
 .card .card-image img {
-  height: 300px;
+  height: 320px;
   width: auto;
+}
+.rowProduct {
+  margin: 10px;
+  float: left;
 }
 
 .product img {
@@ -70,7 +69,7 @@ body {
 }
 
 .product .price.big {
-  font-size: 2,5rem;
+  font-size: 2, 5rem;
 }
 
 .card-action.actions {
@@ -83,27 +82,91 @@ body {
   margin-bottom: 2rem;
 }
 
+.article-form button {
+  float: left;
+  margin-right: 10px;
+}
+
+.editArticle {
+  margin-bottom: 2rem;
+}
+
 .auth {
-  padding-top: 1rem;
+  padding-top: 1rem 0rem;
 }
 
 .alert {
-  padding: .5rem 1rem;
+  padding: 0.5rem;
   border-radius: 10px;
   text-align: center;
   margin-bottom: 1 rem;
-  background: rgba(255, 0, 0, .3);
-  color: red
+  background: rgba(255, 0, 0, 0.3);
+  color: red;
 }
 
 .btn-large {
   float: right;
 }
 
-.productAdmin {
+.tableAdmin {
   margin-bottom: 2rem;
   padding: 1.5rem;
-  border: 2px solid rgb(43,187,173);
+  border: 2px solid rgb(43, 187, 173);
   border-radius: 10px;
   font-size: 25px;
 }
+
+.blockArticle {
+  margin: 20px 0px;
+  padding: 2rem;
+  border: 2px solid rgb(77, 182, 172);
+  border-radius: 5px;
+}
+
+.blockArticle img {
+  margin: 20px;
+  float: left;
+  width: 350px;
+}
+
+.blockArticle p {
+  font-size: 20px;
+}
+
+.header {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.home {
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  height: 720px;
+}
+
+.home a {
+  transform: translate(-30px, -430%);
+  float: right;
+}
+
+.plate, .home h1 {
+  padding-left: 10px;
+  color: white;
+  font-family: "Lobster", cursive;
+  font-size: 50px;
+  text-shadow: black 1px 1px 0, black -1px -1px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.home img {
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.7;
+}
+

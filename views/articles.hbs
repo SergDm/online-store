@@ -1,0 +1,15 @@
+<h1 class="card-panel teal lighten-2" align='center'><u>Articles</u></h1>
+{{#if articles.length}}
+{{#each articles}}
+<div class='blockArticle'>
+  <h2 class="header">{{title}}</h2>
+  <span><b>Author:</b> {{author}}</span>
+  <p class="date">{{date}}</p>
+      <img src="{{img}}">
+    <p class="textArticle">{{{text}}}</p>
+    <a class="waves-effect waves-light btn" href="/articles/{{id}}">Open</a>
+</div>
+{{/each}}
+{{else}}
+<p>None</p>
+{{/if}}

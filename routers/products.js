@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   try {
     const products = await Product.find()
       .populate('userId', 'email name')
-      .select('price title img')
+      .select('price title img group')
 
     res.render('products', {
       title: 'Products',

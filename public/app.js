@@ -61,3 +61,7 @@ if ($card) {
 }
 
 M.Tabs.init(document.querySelectorAll('.tabs'))
+
+document.addEventListener('DOMContentLoaded', function() {
+  M.Sidenav.init(document.querySelectorAll('.sidenav'))
+})

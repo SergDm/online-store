@@ -15,6 +15,7 @@ const cardRoutes = require('./routers/card')
 const ordersRoutes = require('./routers/orders')
 const Handlebars = require('handlebars')
 const authRoutes = require('./routers/auth')
+const articleRoutes = require('./routers/article')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
 const keys = require('./keys')
@@ -56,6 +57,7 @@ app.use('/products', productsRoutes)
 app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/auth', authRoutes)
+app.use('/articles', articleRoutes)
 
 const PORT = process.env.PORT || 3000
 
