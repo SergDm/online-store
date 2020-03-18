@@ -2,11 +2,13 @@ const { Router } = require('express')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const nodemailer = require('nodemailer')
+const { validationResult } = require('express-validator')
 const sendgrid = require('nodemailer-sendgrid-transport')
 const User = require('../models/user')
 const keys = require('../keys')
 const regEmail = require('../emails/registration')
 const resetEmail = require('../emails/reset')
+const { registerValidators } = require('../utils/validators')
 const router = Router()
 
 const transporter = nodemailer.createTransport(sendgrid({
@@ -58,23 +60,22 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.post('/register', async (req, res) => {
+router.post('/register', registerValidators, async (req, res) => {
   try {
-    const { email, password, repeat, name } = req.body
-    const candidate = await User.findOne({ email })
+    const { email, password, name } = req.body
 
-    if (candidate) {
-      req.flash('registerError', 'This email address has already been registered.')
-      res.redirect('/auth/login#register')
-    } else {
-      const hashPassword = await bcrypt.hash(password, 10)
-      const user = new User({
-        email, name, admin: false, password: hashPassword, cart: { items: [] }
-      })
-      await user.save()
-      res.redirect('/auth/login#login')
-      await transporter.sendMail(regEmail(email))
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      req.flash('registerError', errors.array()[0].msg)
+      return res.status(422).redirect('/auth/login#register')
     }
+    const hashPassword = await bcrypt.hash(password, 10)
+    const user = new User({
+      email, name, admin: false, password: hashPassword, cart: { items: [] }
+    })
+    await user.save()
+    res.redirect('/auth/login#login')
+    await transporter.sendMail(regEmail(email))
   } catch (e) {
     console.log(e)
   }
