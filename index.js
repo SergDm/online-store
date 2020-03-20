@@ -5,6 +5,8 @@ const csrf = require('csurf')
 const flash = require('connect-flash')
 const mongoose = require('mongoose')
 const session = require('express-session')
+const helmet = require('helmet')
+const compression = require('compression')
 const MongoStore= require('connect-mongodb-session')(session)
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
@@ -16,8 +18,11 @@ const ordersRoutes = require('./routers/orders')
 const Handlebars = require('handlebars')
 const authRoutes = require('./routers/auth')
 const articleRoutes = require('./routers/article')
+const profileRoutes = require('./routers/profile')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
+const errorHandler = require('./middleware/error')
+const fileMiddleware = require('./middleware/file')
 const keys = require('./keys')
 
 const app = express()
@@ -39,6 +44,7 @@ app.set('view engine', 'hbs')
 app.set('views', 'views')
 
 app.use(express.static(path.join(__dirname, 'public')))
+app.use('/images',express.static(path.join(__dirname, 'images')))
 app.use(express.urlencoded({extended: true}))
 app.use(session({
   secret: keys.SESSION_SECRET,
@@ -46,8 +52,12 @@ app.use(session({
   saveUninitialized: false,
   store
 }))
-app.use(csrf())
+app.use(fileMiddleware.single('avatar'))
+
 app.use(flash())
+app.use(helmet())
+app.use(csrf())
+app.use(compression())
 app.use(varMiddleware)
 app.use(userMiddleware)
 
@@ -58,6 +68,8 @@ app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/auth', authRoutes)
 app.use('/articles', articleRoutes)
+app.use('/profile', profileRoutes)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 3000
 

@@ -29,6 +29,9 @@ exports.registerValidators = [
     .trim()
 ]
 
-exports.courseValidators = [
-  
+exports.productValidators = [
+  body('title').isLength({min: 3}).withMessage('Title must be at least 3 symbols').trim(),
+  body('group').isLength({min: 3}).withMessage('Group must be at least 3 symbols').trim(),
+  body('price').isNumeric().withMessage('Enter valid price'),
+  body('img', 'Enter valid Url image').isURL()
 ]

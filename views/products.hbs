@@ -1,4 +1,9 @@
-<h1>Products</h1>
+<div class="nav-wrapperBread">
+  <div class="col s12">
+    <a href="/" class="breadcrumb">HOME</a>
+  </div>
+</div>
+<h1 class="card-panel teal lighten-2">Products</h1>
 
 {{#if products.length}}
 {{#each products}}
@@ -13,14 +18,16 @@
         <span class="card-title">{{title}}</span>
         <p class="price">{{price}}</p>
       </div>
-      <div class="card-action actions" >
-        <a href="/products/{{id}}">Open product</a>
+      <div class="card-action actions">
+        <a href="/products/{{id}}">
+          <button class='btn btn-primary'>Open product</button>
+        </a>
         {{#if @root.isAuth}}
-          <form action="/card/admin" method="POST">
-            <input type="hidden" name="_csrf" value="{{@root.csrf}}">
-            <input type='hidden' name='id' value="{{id}}">
-            <button type='submit' class='btn btn-primary'>BUY</button>
-          </form>
+        <form action="/card/admin" method="POST">
+          <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+          <input type='hidden' name='id' value="{{id}}">
+          <button type='submit' class='btn btn-primary'>BUY</button>
+        </form>
         {{/if}}
       </div>
     </div>
@@ -28,5 +35,5 @@
 </div>
 {{/each}}
 {{else}}
-<p>None</p>
+<h1>Out of stock items</h1>
 {{/if}}

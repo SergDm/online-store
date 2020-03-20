@@ -1,3 +1,9 @@
+<div class="nav-wrapperBread">
+  <div class="col s12">
+    <a href="/" class="breadcrumb">HOME</a>
+  </div>
+</div>
+
 <div class='editArticle'>
 	<h1>Edit {{article.title}}</h1>
 
@@ -22,10 +28,10 @@
 		</div>
 
 		<div class="input-field">
-			<textarea id="text" name='text' type="text" class="materialize-textarea" required>
-		{{article.text}}
+			<textarea id="textMarked" name='text' type="text" class="materialize-textarea" required>
+		{{article.textMarked}}
 		</textarea>
-			<label for="text">Text article</label>
+			<label for="text">Text article (use Markdown)</label>
 			<span class="helper-text" data-error="enter new text"></span>
 		</div>
 

@@ -11,6 +11,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  avatarUrl: String,
   resetToken: String,
   resetTokenExp: Date,
   cart: {
@@ -64,7 +65,7 @@ userSchema.methods.removeFromCart = function(id) {
 }
 
 userSchema.methods.clearCart = function() {
-  this.cart = {item: []}
+  this.cart = {items: []}
   return this.save()
 }
 

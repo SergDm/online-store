@@ -10,6 +10,7 @@ const article = new Schema({
     required: true
   },
   img: String,
+  textMarked: String,
   text: {
     type: String,
     required: true

@@ -25,7 +25,8 @@ router.post('/admin', auth, async (req, res) => {
 
 router.delete('/remove/:id', auth, async (req, res) => {
   await req.user.removeFromCart(req.params.id)
-  const user = await req.user.populate('cart.items.productId').execPopulate()
+  const user = await req.user.populate('cart.items.productId')
+  .execPopulate()
   const products = mapCartItems(user.cart)
   const cart = {
     products, price: computePrice(products)
@@ -37,7 +38,6 @@ router.get('/', auth, async (req, res) => {
   const user = await req.user
     .populate('cart.items.productId')
     .execPopulate()
-
   const products = mapCartItems(user.cart)
   res.render('card', {
     title: 'Cart',

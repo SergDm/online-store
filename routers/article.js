@@ -37,9 +37,16 @@ router.post('/edit', auth, async (req, res) => {
   try {
     const { id } = req.body
     delete req.body.id
+    const markedText = marked(req.body.text)
     const article = await Article.findById(id)
-    const markedTextEdit = marked(req.body.text)
-    Object.assign(article, req.body, req.body.text = markedTextEdit)
+    const newArticle = {
+      title: req.body.title,
+      author: req.body.author,
+      text: markedText,
+      textMarked: req.body.text,
+      img: req.body.img,
+    }
+    Object.assign(article, newArticle)
     await article.save()
     res.redirect('/articles')
   } catch (e) {
@@ -62,7 +69,6 @@ router.get('/:id', async (req, res) => {
   try {
     const article = await Article.findById(req.params.id)
     res.render('article', {
-      layout: 'empty',
       title: `Article ${article.title}`,
       article
     })
